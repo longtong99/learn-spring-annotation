@@ -10,28 +10,28 @@ import com.zzl.bean.Person;
 @Configuration
 public class MainConfig2 {
 	/**
-	 * 
+	 *
 	 * @return
 	 * * @see ConfigurableBeanFactory#SCOPE_PROTOTYPE prototype
 	 * @see ConfigurableBeanFactory#SCOPE_SINGLETON singleton
-	 * @see org.springframework.web.context.WebApplicationContext#SCOPE_REQUEST request
-	 * @see org.springframework.web.context.WebApplicationContext#SCOPE_SESSION session
-	 * 
-	 * prototype:¶àÊµÀıµÄ,ÕâÖÖÇé¿öÏÂ£¬Ö»ÓĞÔÚÓÃµ½¶ÔÏóµÄÊ±ºò²Å»á´´½¨
-	 * 
-	 * singleton:µ¥ÊµÀıµÄ£¨Ä¬ÈÏÖµ£©£¬ÕâÖÖÇé¿öÏÂ£¬ÔÚIOCÈİÆ÷¼ÓÔØµÄÊ±ºò¶ÔÏó¾Í»á´´½¨£¬ÒÔºóÊ¹ÓÃÖ±½ÓÔÚIOCÈİÆ÷ÖĞÄÃ
-	 * 
-	 * request:Ò»¸öÇëÇó´´½¨Ò»´Î
-	 * 
-	 * session:Ò»¸ösession´´½¨Ò»¸ö
-	 * 
-	 * 
+	 * @see org.springframework.web.context.WebApplicationContext #SCOPE_REQUEST request
+	 * @see org.springframework.web.context.WebApplicationContext #SCOPE_SESSION session
+	 *
+	 * prototype:å¤šå®ä¾‹çš„,è¿™ç§æƒ…å†µä¸‹ï¼Œåªæœ‰åœ¨ç”¨åˆ°å¯¹è±¡çš„æ—¶å€™æ‰ä¼šåˆ›å»º
+	 *
+	 * singleton:å•å®ä¾‹çš„ï¼ˆé»˜è®¤å€¼ï¼‰ï¼Œè¿™ç§æƒ…å†µä¸‹ï¼Œåœ¨IOCå®¹å™¨åŠ è½½çš„æ—¶å€™å¯¹è±¡å°±ä¼šåˆ›å»ºï¼Œä»¥åä½¿ç”¨ç›´æ¥åœ¨IOCå®¹å™¨ä¸­æ‹¿
+	 *
+	 * request:ä¸€ä¸ªè¯·æ±‚åˆ›å»ºä¸€æ¬¡
+	 *
+	 * session:ä¸€ä¸ªsessionåˆ›å»ºä¸€ä¸ª
+	 *
+	 *
 	 */
 	//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	@Bean
 	public Person person(){
-		System.out.println("´´½¨Person¶ÔÏó¡£¡£¡£¡£¡£");
-		return new Person("ÕÅÈı",26);
+		System.out.println("åˆ›å»ºPersonå¯¹è±¡ã€‚ã€‚ã€‚ã€‚ã€‚");
+		return new Person("å¼ ä¸‰",26);
 	}
-	
+
 }

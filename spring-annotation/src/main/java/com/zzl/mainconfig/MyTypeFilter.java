@@ -10,22 +10,22 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 
 public class MyTypeFilter implements TypeFilter {
-	
+
 	/**
-	 * metadataReader£º¶ÁÈ¡µ½µÄµ±Ç°ÕıÔÚÉ¨ÃèµÄÀàµÄĞÅÏ¢
-	 * metadataReaderFactory:¿ÉÒÔ»ñÈ¡µ½ÆäËûÈÎºÎÀàĞÅÏ¢µÄ
+	 * metadataReaderï¼šè¯»å–åˆ°çš„å½“å‰æ­£åœ¨æ‰«æçš„ç±»çš„ä¿¡æ¯
+	 * metadataReaderFactory:å¯ä»¥è·å–åˆ°å…¶ä»–ä»»ä½•ç±»ä¿¡æ¯çš„
 	 */
 	public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory)
 			throws IOException {
 		// TODO Auto-generated method stub
-		//»ñÈ¡µ±Ç°Àà×¢½âµÄĞÅÏ¢
+		//è·å–å½“å‰ç±»æ³¨è§£çš„ä¿¡æ¯
 		AnnotationMetadata annotationMetadata  =metadataReader.getAnnotationMetadata();
-		//»ñÈ¡µ±Ç°ÕıÔÚÉ¨ÃèµÄÀàµÄÀàĞÅÏ¢
+		//è·å–å½“å‰æ­£åœ¨æ‰«æçš„ç±»çš„ç±»ä¿¡æ¯
 		ClassMetadata classMetadata = metadataReader.getClassMetadata();
-		//»ñÈ¡µ±Ç°Àà×ÊÔ´£¨ÀàµÄÂ·¾¶£©
+		//è·å–å½“å‰ç±»èµ„æºï¼ˆç±»çš„è·¯å¾„ï¼‰
 		Resource resource = metadataReader.getResource();
 		String className = classMetadata.getClassName();
-		//É¨ÃèÀàÃû°üº¬er1µÄ
+		//æ‰«æç±»ååŒ…å«er1çš„
 		if(className.contains("er1")){
 			return true;
 		}
