@@ -18,18 +18,17 @@ import com.zzl.controller.BookController;
  */
 @Configuration
 @ComponentScans(value = {
-		@ComponentScan(value = "com.zzl", /*
-											 * excludeFilters={
-											 * //排除掉用Controller和Service注解的类
-											 *
-											 * @Filter(type=FilterType.
-											 * ANNOTATION,classes={Controller.
-											 * class,Service.class}) }
-											 */
+		@ComponentScan(value = "com.zzl",
+											 excludeFilters={
+											  //排除掉用Controller和Service注解的类
+
+											  @Filter(type=FilterType.
+											  ANNOTATION,classes={Controller.
+											  class,Service.class}) }
 				// 只包含BookController类
 				/*includeFilters = { @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
 						BookController.class }) }, useDefaultFilters = false*/
-				includeFilters = {@Filter(type = FilterType.CUSTOM,classes=MyTypeFilter.class)},useDefaultFilters=false)
+				/*includeFilters = {@Filter(type = FilterType.CUSTOM,classes=MyTypeFilter.class)},useDefaultFilters=false*/)
 
 })
 // @ComponentScan value:指定要扫描的包
