@@ -23,14 +23,11 @@ public class IOCTest {
 	@Test
 	public void test02(){
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig2.class);
-		String[] names = context.getBeanDefinitionNames();
-		for(String name : names){
-			System.out.println(name);
-		}
-		//Ä¬ÈÏÊÇµ¥ÊµÀý
+		System.out.println("IOC容器初始化完成");
+		//默认是单实例
 		Object person1 = context.getBean("person");
 		Object person2 = context.getBean("person");
-		//ÕâÀï´òÓ¡true
+		//这里打印true
 		System.out.println(person1==person2);
 	}
 
