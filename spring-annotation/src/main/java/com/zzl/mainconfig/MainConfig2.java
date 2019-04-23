@@ -1,14 +1,16 @@
 package com.zzl.mainconfig;
 
+import com.zzl.condition.LinuxCondition;
+import com.zzl.condition.WindowCondition;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 import com.zzl.bean.Person;
 
 @Configuration
+//类中组件统一设置，满足这个条件，类中组件才能被加载
+//当然，如果这里满足了，下面方法也设置了@Conditional，并且不满足，那么对应的方法的bean也不会被加载
+@Conditional({LinuxCondition.class})
 public class MainConfig2 {
 	/**
 	 *
@@ -35,5 +37,24 @@ public class MainConfig2 {
 		System.out.println("创建Person对象。。。。。");
 		return new Person("张三",26);
 	}
+
+    /**
+     *  @Conditional{Condition} 注解：按照条件进行判断，满足条件才会给容器装载bean
+     *
+     *  如果是windows系统返回bill,
+     *  如果是linux系统返回linus
+     *
+     */
+    @Conditional({WindowCondition.class})
+	@Bean("bill")
+	public Person person1(){
+	    return new Person("Bill Gates",66);
+    }
+
+    @Conditional({LinuxCondition.class})
+    @Bean("linus")
+    public Person person2(){
+        return new Person("Linus",66);
+    }
 
 }

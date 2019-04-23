@@ -1,11 +1,13 @@
 package com.zzl.test;
 
+import com.zzl.bean.Person;
 import com.zzl.mainconfig.MainConfig0;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.zzl.mainconfig.MainConfig;
 import com.zzl.mainconfig.MainConfig2;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 public class IOCTest {
 
@@ -30,5 +32,20 @@ public class IOCTest {
 		//这里打印true
 		System.out.println(person1==person2);
 	}
+
+    @SuppressWarnings("resource")
+    @Test
+    public void test03(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig2.class);
+        ConfigurableEnvironment environment =context.getEnvironment();
+        //运行环境 Windows 10
+        String environmentName = environment.getProperty("os.name");
+        System.out.println(environmentName);
+        String[] beanNamesForType = context.getBeanNamesForType(Person.class);
+        for (String name:beanNamesForType){
+            System.out.println(name);
+        }
+    }
+
 
 }

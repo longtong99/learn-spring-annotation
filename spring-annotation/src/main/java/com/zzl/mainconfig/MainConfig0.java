@@ -1,46 +1,57 @@
 package com.zzl.mainconfig;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+import com.zzl.condition.LinuxCondition;
+import com.zzl.condition.WindowCondition;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.*;
 
 import com.zzl.bean.Person;
-import com.zzl.controller.BookController;
 
-/**
- *
- * @author zzl 配置类
- */
 @Configuration
-@ComponentScans(value = {
-		@ComponentScan(value = "com.zzl",
-
-				includeFilters = {@Filter(type = FilterType.CUSTOM,classes=MyTypeFilter.class)},useDefaultFilters=false)
-
-})
-// @ComponentScan value:指定要扫描的包
-// excludeFilters = Filter[] ：指定扫描的时候按照什么规则排除那些组件
-// includeFilters = Filter[]
-// ：指定扫描的时候只需要包含哪些组件,useDefaultFilters这个参数在设置includeFilters的时候必须设置为false，默认是true
-// FilterType.ANNOTATION：按照注解，例如@Controller,@Service
-// FilterType.ASSIGNABLE_TYPE：按照给定的类型；例如BookController
-// FilterType.ASPECTJ：使用ASPECTJ表达式
-// FilterType.REGEX：使用正则指定
-// FilterType.CUSTOM：使用自定义规则
 public class MainConfig0 {
-
 	/**
 	 *
-	 * @return 给容器中注册一个Bean; 类型为返回值的类型， id默认是用方法名作为id
+	 * @return
+	 * * @see ConfigurableBeanFactory#SCOPE_PROTOTYPE prototype
+	 * @see ConfigurableBeanFactory#SCOPE_SINGLETON singleton
+	 * @see org.springframework.web.context.WebApplicationContext #SCOPE_REQUEST request
+	 * @see org.springframework.web.context.WebApplicationContext #SCOPE_SESSION session
+	 *
+	 * prototype:多实例的,这种情况下，只有在用到对象的时候才会创建
+	 *
+	 * singleton:单实例的（默认值），这种情况下，在IOC容器加载的时候对象就会创建，以后使用直接在IOC容器中拿
+	 *
+	 * request:一个请求创建一次
+	 *
+	 * session:一个session创建一个
+	 *
+	 *
 	 */
-	@Bean("person11")
-	public Person person() {
-		return new Person("lisi", 20);
+	//@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	@Lazy
+	@Bean
+	public Person person(){
+		System.out.println("创建Person对象。。。。。");
+		return new Person("张三",26);
+	}
+
+	/**
+	 *  @Conditional{Condition} 注解：按照条件进行判断，满足条件才会给容器装载bean
+	 *
+	 *  如果是windows系统返回bill,
+	 *  如果是linux系统返回linus
+	 *
+	 */
+	@Conditional({WindowCondition.class})
+	@Bean("bill")
+	public Person person1(){
+		return new Person("Bill Gates",66);
+	}
+
+	@Conditional({LinuxCondition.class})
+	@Bean("linus")
+	public Person person2(){
+		return new Person("Linus",66);
 	}
 
 }
