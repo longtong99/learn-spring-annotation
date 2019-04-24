@@ -1,6 +1,10 @@
 package com.zzl.mainconfig;
 
+import com.zzl.bean.Color;
+import com.zzl.bean.Red;
 import com.zzl.condition.LinuxCondition;
+import com.zzl.condition.MyImportBeanDefinitionRegistrar;
+import com.zzl.condition.MyImportSelector;
 import com.zzl.condition.WindowCondition;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.*;
@@ -10,7 +14,9 @@ import com.zzl.bean.Person;
 @Configuration
 //类中组件统一设置，满足这个条件，类中组件才能被加载
 //当然，如果这里满足了，下面方法也设置了@Conditional，并且不满足，那么对应的方法的bean也不会被加载
-@Conditional({LinuxCondition.class})
+@Conditional({WindowCondition.class})
+// @Import快速导入一个组件，组件的id默认值类的全类名,里面的参数是一个数组
+@Import({Color.class, Red.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 public class MainConfig2 {
 	/**
 	 *
