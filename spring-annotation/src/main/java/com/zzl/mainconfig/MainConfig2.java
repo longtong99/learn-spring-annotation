@@ -1,6 +1,7 @@
 package com.zzl.mainconfig;
 
 import com.zzl.bean.Color;
+import com.zzl.bean.ColorFactoryBean;
 import com.zzl.bean.Red;
 import com.zzl.condition.LinuxCondition;
 import com.zzl.condition.MyImportBeanDefinitionRegistrar;
@@ -61,6 +62,11 @@ public class MainConfig2 {
     @Bean("linus")
     public Person person2(){
         return new Person("Linus",66);
+    }
+
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
     }
 
 }

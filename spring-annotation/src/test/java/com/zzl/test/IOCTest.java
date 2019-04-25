@@ -49,7 +49,7 @@ public class IOCTest {
 
     @Test
     public void testImport(){
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig2.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig0.class);
         printBeans(context);
     }
 
@@ -58,6 +58,19 @@ public class IOCTest {
         for (String name:definitionNames){
             System.out.println(name);
         }
+    }
+
+    @Test
+    public void testFactoryBean(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfig2.class);
+        //这种方式获取的是注入的bean
+        Object bean1 = context.getBean("colorFactoryBean");
+        Object bean2 = context.getBean("colorFactoryBean");
+        System.out.println(bean1.getClass());
+        System.out.println(bean1 == bean2);
+        //这种方式获取的是FactoryBean的实现类
+        Object bean3 = context.getBean("&colorFactoryBean");
+        System.out.println(bean3.getClass());
     }
 
 
