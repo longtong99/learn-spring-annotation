@@ -12,13 +12,13 @@ public class MainTest {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		// ÅäÖÃÎÄ¼ş·½Ê½
+		// é…ç½®æ–‡ä»¶æ–¹å¼
 		/*
 		 * ApplicationContext context = new
 		 * ClassPathXmlApplicationContext("beans.xml"); Object person =
 		 * context.getBean("person");
 		 */
-		// ×¢½âµÄ·½Ê½
+		// æ³¨è§£çš„æ–¹å¼
 		ApplicationContext context = new AnnotationConfigApplicationContext(MainConfig0.class);
 		Person person = context.getBean(Person.class);
 		System.out.println(person);
