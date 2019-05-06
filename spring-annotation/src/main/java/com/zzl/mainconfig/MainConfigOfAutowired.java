@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Primary;
  *
  */
 @Configuration
-@ComponentScan({"com.zzl.controller","com.zzl.service","com.zzl.dao"})
+@ComponentScan({"com.zzl.controller","com.zzl.service","com.zzl.dao","com.zzl.bean"})
 public class MainConfigOfAutowired {
 
     @Primary

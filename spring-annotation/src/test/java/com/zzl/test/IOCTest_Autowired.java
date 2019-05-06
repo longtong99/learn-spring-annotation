@@ -25,6 +25,7 @@ public class IOCTest_Autowired {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MainConfigOfAutowired.class);
         BookService bookService = context.getBean(BookService.class);
         System.out.println(bookService);
+        System.out.println("初始化的IOC："+context);
     }
 
 
